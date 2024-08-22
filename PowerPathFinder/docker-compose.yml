@@ -1,0 +1,86 @@
+services:
+  route-api:
+    image: powerpathfinder-route-api
+    build:
+      context: ppf-route-api
+      dockerfile: Dockerfile
+    container_name: route-api
+    restart: unless-stopped
+    ports:
+      - "8080:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./db:/home/app/db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py cleardata
+        python manage.py loaddata load_chargerTypes.json
+        python manage.py seed
+        python manage.py loaddata service_profiles.json
+        python manage.py loaddata load_achievements.json
+        python manage.py loaddata sample_users.json sample_routes.json
+        python manage.py runserver 0.0.0.0:8000
+
+  user-api:
+    image: powerpathfinder-user-api
+    build:
+      context: ppf-user-api
+      dockerfile: Dockerfile
+    container_name: user-api
+    restart: unless-stopped
+    ports:
+      - "8081:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./credentials:/home/app/credentials
+    depends_on:
+      - route-api
+
+  admin-page:
+    image: powerpathfinder-admin-page
+    build:
+      context: ppf-admin-page
+      dockerfile: Dockerfile
+    container_name: admin-page
+    restart: unless-stopped
+    ports:
+      - "8082:8000"
+    env_file:
+      - .env
+
+  chat-engine:
+    image: powerpathfinder-chat-engine
+    build:
+      context: ppf-chat-engine
+      dockerfile: Dockerfile
+    container_name: chat-engine
+    restart: unless-stopped
+    ports:
+      - "8083:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./db/chatengine:/opt/chatengine
+    environment:
+      - ROUTE_API_URL=http://route-api:8000
+      - USER_API_URL=http://user-api:8000
+    depends_on:
+      - user-api
+
+  payments-api:
+    image: powerpathfinder-payments-api
+    build:
+      context: ppf-payments-api
+      dockerfile: Dockerfile
+    container_name: payments-api
+    restart: unless-stopped
+    ports:
+      - "8084:8000"
+    env_file:
+      - .env

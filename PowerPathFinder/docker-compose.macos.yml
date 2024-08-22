@@ -1,0 +1,20 @@
+services:
+  user-api:
+    build:
+      context: ppf-user-api
+      dockerfile: Dockerfile.macos
+
+  route-api:
+    build:
+      context: ppf-route-api
+      dockerfile: Dockerfile.macos
+
+  payments-api:
+    build:
+      context: ppf-payments-api
+      dockerfile: Dockerfile.macos
+
+  admin-page:
+    build:
+      context: ppf-admin-page
+      dockerfile: Dockerfile.macos

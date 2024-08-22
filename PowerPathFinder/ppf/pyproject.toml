@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=69.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "powerpathfinder-models"
+version = "2.2.0"
+requires-python = ">=3.11"
+dependencies = [
+    "Django>=5.0",
+]
+readme = "README.md"
+
+[metadata]
+description = "PowerPathFinder is a powerful path finding tool"
+license = "MIT"
+author = "Your Name"
+author-email = "yourname@example.com"

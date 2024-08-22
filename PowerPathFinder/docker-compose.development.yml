@@ -1,0 +1,106 @@
+services:
+  route-api:
+    container_name: route-api
+    build:
+      context: ppf-route-api
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    ports:
+      - "8080:8000"
+    env_file:
+      - .env.debug
+    volumes:
+      - ./ppf:/home/app/ppf
+      - ./ppf-route-api/routeApi:/home/app/routeApi
+      - ./ppf-route-api/api:/home/app/api
+      - ./db:/home/app/db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python -m pip install --config-settings editable-mode=strict -e ppf
+        python manage.py runserver 0.0.0.0:8000
+
+  user-api:
+    container_name: user-api
+    build:
+      context: ppf-user-api
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    ports:
+      - "8081:8000"
+    env_file:
+      - .env.debug
+    volumes:
+      - ./ppf:/home/app/ppf
+      - ./ppf-user-api/userApi:/home/app/userApi
+      - ./ppf-user-api/usrLogin:/home/app/usrLogin
+      - ./ppf-user-api/emailSending:/home/app/emailSending
+      - ./ppf-user-api/achievement:/home/app/achievement
+      - ./ppf-user-api/credentials:/home/app/credentials
+      - ./ppf-user-api/api:/home/app/api
+      - ./db:/home/app/db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python -m pip install --config-settings editable-mode=strict -e ppf
+        python manage.py runserver 0.0.0.0:8000
+
+  admin-page:
+    container_name: ppf-admin-page
+    build:
+      context: ppf-admin-page
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    ports:
+      - "8082:8000"
+    env_file:
+      - .env.debug
+    volumes:
+      - ./ppf:/home/app/ppf
+      - ./ppf-admin-page/adminApp:/home/app/adminApp
+      - ./ppf-admin-page/adminPage:/home/app/adminPage
+      - ./db:/home/app/db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python -m pip install --config-settings editable-mode=strict -e ppf
+        python manage.py runserver 0.0.0.0:8000
+
+  payments-api:
+    container_name: payments-api
+    build:
+      context: ppf-payments-api
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    ports:
+      - "8084:8000"
+    env_file:
+      - .env.debug
+    volumes:
+      - ./ppf:/home/app/ppf
+      - ./ppf-payments-api/api:/home/app/api
+      - ./ppf-payments-api/paymentsApi:/home/app/paymentsApi
+      - ./db:/home/app/db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python -m pip install --config-settings editable-mode=strict -e ppf
+        python manage.py runserver 0.0.0.0:8000
+
+  chat-engine:
+    container_name: chat-engine
+    build:
+      context: ./ppf-chat-engine
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8083:8000"
+    volumes:
+      - ./db/chatengine:/opt/chatengine
+    environment:
+      - ROUTE_API_URL=http://route-api:8000
+      - USER_API_URL=http://user-api:8000
