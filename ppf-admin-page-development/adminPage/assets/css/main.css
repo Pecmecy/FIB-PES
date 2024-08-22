@@ -1,0 +1,28 @@
+body {
+    background-color: grey;
+}
+
+
+
+/* Custom styles for the footer */
+footer {
+    background-color: #333;
+    /* Dark background color */
+    color: #fff;
+    /* Light text color */
+    padding: 20px 0;
+    bottom: 0;
+}
+
+/* Style for the links in the footer */
+footer a {
+    color: #fff;
+    /* Light text color */
+    text-decoration: none;
+}
+
+/* Style for the links in the footer on hover */
+footer a:hover {
+    color: #ccc;
+    /* Slightly lighter text color on hover */
+}

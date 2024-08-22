@@ -1,0 +1,33 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="text-center">
+        <img width="150" src="{% static 'images/ppf-no-background.png' %}" alt="" class="img-fluid" />
+        User Details
+      </h1>
+      <hr>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center">{{ user.username }}</h2>
+      <form method="post" class="my-4 p-4 rounded shadow-lg bg-light">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="mb-3">
+          <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+          {{ field }}
+        </div>
+        {% endfor %}
+        <div class="d-grid gap-2">
+          <a href="{% url 'userDetails' user.pk %}" class="btn btn-danger btn-lg">Cancel</a>
+          <button type="submit" class="btn btn-primary btn-lg mt-3">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

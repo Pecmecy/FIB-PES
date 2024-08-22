@@ -1,0 +1,31 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>
+          <img width="150" src="{% static 'images/ppf-no-background.png' %}" alt="" class="img-fluid" />
+          Chat Room Details<hr />
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="chat-container" style="max-height: 600px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+          {% for message in messages %}
+            <div class="chat-message" style="margin-bottom: 10px;">
+              <div class="message-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="fw-bold">{{ message.sender.username }}</span>
+                <span class="text-muted" style="font-size: 0.8em;">{{ message.ts }}</span>
+              </div>
+              <div class="message-body" style="padding-left: 20px;">
+                <p>{{ message.content }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

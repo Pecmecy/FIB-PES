@@ -1,0 +1,46 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                <img width="150" src="{% static 'images/ppf-no-background.png' %}" alt="" class="img-fluid" />
+                Route Details
+                <hr>
+            </h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>{{ route.originAlias }} --> {{ route.destinationAlias }}</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group list-group-flush">
+                        {% for key, value in route_data.items %}
+                        <li class="list-group-item" style="background-color: rgb(168, 168, 168);">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <span class="fw-bold">{{ key }}:</span>
+                                </div>
+                                <div class="col-md-8">
+                                    <span>{{ value }}</span>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <a href="{% url 'routeDetailsEdit' route.pk %}" class="btn btn-primary btn-lg btn-block"
+                    role="button">Edit Route</a>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

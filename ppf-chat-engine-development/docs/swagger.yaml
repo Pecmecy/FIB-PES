@@ -1,0 +1,135 @@
+basePath: /
+definitions:
+  api.PostJoinRequest:
+    properties:
+      driver:
+        type: string
+      id:
+        type: string
+    type: object
+  api.PostLeaveRequest:
+    properties:
+      driver:
+        type: string
+      id:
+        type: string
+    type: object
+  api.PostRoomRequest:
+    properties:
+      driver:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: Chat Engine API
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      summary: always returns 200
+      tags:
+      - endpoints
+  /connect/{userId}:
+    get:
+      consumes:
+      - application/json
+      description: promotes an http request to a websocket connection
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      summary: opens a connection
+      tags:
+      - endpoints
+  /join:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: room data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/api.PostJoinRequest'
+      produces:
+      - application/json
+      responses: {}
+      summary: makes user join a room
+      tags:
+      - endpoints
+  /leave:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: room data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/api.PostLeaveRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      summary: makes user leave a room
+      tags:
+      - endpoints
+  /room:
+    post:
+      consumes:
+      - application/json
+      description: opens a new room and joins the specified driver
+      parameters:
+      - description: room data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/api.PostRoomRequest'
+      produces:
+      - application/json
+      responses: {}
+      summary: opens a new room
+      tags:
+      - endpoints
+  /room/{id}/messages:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: room id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      summary: gets messages of a room
+      tags:
+      - endpoints
+swagger: "2.0"

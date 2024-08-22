@@ -1,0 +1,51 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>
+        <img width="150" src="{% static 'images/ppf-no-background.png' %}" alt="" class="img-fluid" />
+        User Details
+        <hr>
+      </h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>{{ user.username }}</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="list-group list-group-flush">
+            {% for key, value in user_data.items %}
+            <li class="list-group-item" style="background-color: rgb(168, 168, 168);">
+              <div class="row">
+                <div class="col-md-4">
+                  <span class="fw-bold">{{ key }}:</span>
+                </div>
+                <div class="col-md-8">
+                  <span>{{ value }}</span>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <br>
+        <a href="{% url 'userDetailsEdit' user.pk %}" class="btn btn-primary btn-lg btn-block" role="button">Edit
+          User</a>
+        <form action="" method="post" id="deleteUserForm" style="display: inline-block;">
+          {% csrf_token %}
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="btn btn-danger btn-lg btn-block">Delete User</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

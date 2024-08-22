@@ -1,0 +1,55 @@
+name: Turbo deploy to EC2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Instalar key para que el agent SSH del runner pueda ejecutar commandos de docker usando ssh
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2.7.0
+      with:
+        key: ${{ secrets.SSH_AWS_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+        # name: id_rsa # optional
+        # config: ${{ secrets.CONFIG }} # ssh_config; optional
+        # if_key_exists: fail # replace / ignore / fail; optional (defaults to fail)
+    
+    - uses: actions/checkout@v4
+      with:
+        repository: pes2324q2-gei-upc/PowerPathFinder
+        sparse-checkout: |
+          docker-compose.yml
+        sparse-checkout-cone-mode: false
+
+    - name: Save files
+      run: |
+        mv docker-compose.yml ..
+
+    - name: Checkout of chat engine
+      uses: actions/checkout@v4
+      with:
+        ref: main
+
+    - name: Docker build and save image
+      run: |
+        docker build -t ${{github.event.repository.name}}:latest .
+  
+    # Si el ssh agent de github esta bien configurado los comandos de docker
+    # deberian ejecutarse en el contexto configurado (el remote)
+    - name: Compose Up in remote
+      run: |
+       mv ../docker-compose.yml .
+       echo "${{ secrets.ENV }}" > .env
+       docker save ${{github.event.repository.name}}:latest -o ${{github.event.repository.name}}.tar
+       docker context create remote --docker "host=ssh://${{ secrets.USERNAME }}@${{ secrets.HOST }}"
+       docker context use remote
+       docker rm -f chat-engine
+       docker load -i ${{github.event.repository.name}}.tar
+       docker compose -f docker-compose.yml up chat-engine -d
+       docker system prune -f
