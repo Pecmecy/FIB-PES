@@ -1,0 +1,478 @@
+[
+    {
+        "model": "common.user",
+        "pk": 1,
+        "fields": {
+            "user_ptr_id": 1,
+            "birthDate": "1990-07-16",
+            "points": 0,
+            "updatedAt": "2024-03-19 22:21:51.261909",
+            "createdAt": "2024-03-19 22:21:50.895653"
+        }
+    },
+    {
+        "model": "common.user",
+        "pk": 2,
+        "fields": {
+            "user_ptr_id": 2,
+            "birthDate": "1991-03-31",
+            "points": 0,
+            "updatedAt": "2024-03-19 22:22:03.055825",
+            "createdAt": "2024-03-19 22:22:02.691276"
+        }
+    },
+    {
+        "model": "common.user",
+        "pk": 3,
+        "fields": {
+            "user_ptr_id": 3,
+            "birthDate": "1985-11-12",
+            "points": 0,
+            "updatedAt": "2024-03-19 22:22:21.509399",
+            "createdAt": "2024-03-19 22:22:21.150153"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "id": 1,
+            "password": "pbkdf2_sha256$720000$UmvD5HOLqgwOHpna04VEWw$g7aN/S7FdQVfKKV2sQarjkWzShxUQER6JR3uzIZeVGQ=",
+            "last_login": null,
+            "is_superuser": 0,
+            "username": "Mordecai",
+            "last_name": "",
+            "email": "mordecai@thepark.com",
+            "is_staff": 0,
+            "is_active": 1,
+            "date_joined": "2024-03-19 22:21:50.893482",
+            "first_name": "Mordecai"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "id": 2,
+            "password": "pbkdf2_sha256$720000$UmvD5HOLqgwOHpna04VEWw$g7aN/S7FdQVfKKV2sQarjkWzShxUQER6JR3uzIZeVGQ=",
+            "last_login": null,
+            "is_superuser": 0,
+            "username": "Rigby",
+            "last_name": "",
+            "email": "rigby@thepark.com",
+            "is_staff": 0,
+            "is_active": 1,
+            "date_joined": "2024-03-19 22:22:02.689467",
+            "first_name": "Rigby"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "id": 3,
+            "password": "pbkdf2_sha256$720000$UmvD5HOLqgwOHpna04VEWw$g7aN/S7FdQVfKKV2sQarjkWzShxUQER6JR3uzIZeVGQ=",
+            "last_login": null,
+            "is_superuser": 0,
+            "username": "Test",
+            "last_name": "Testingson",
+            "email": "user@test.try",
+            "is_staff": 0,
+            "is_active": 1,
+            "date_joined": "2024-03-19 22:22:21.149227",
+            "first_name": "Test"
+        }
+    },
+    {
+        "model": "authtoken.token",
+        "pk": 1,
+        "fields": {
+            "user_id": 3,
+            "key": "c65b642f6712afcdc288b9d3e643aaf1301d47ab",
+            "created": "2024-04-09 18:51:41.789429"
+        }
+    },
+    {
+        "model": "authtoken.token",
+        "pk": 2,
+        "fields": {
+            "user_id": 1,
+            "key": "e65b642f8292afcdc736b9d3e643aaf1301d47al",
+            "created": "2024-05-09 18:51:41.789429"
+        }
+    },
+    {
+        "model": "common.preference",
+        "pk": 1,
+        "fields": {
+            "canNotTravelWithPets": true,
+            "listenToMusic": false,
+            "noSmoking": true,
+            "talkTooMuch": false
+        }
+    },
+    {
+        "model": "common.preference",
+        "pk": 2,
+        "fields": {
+            "canNotTravelWithPets": true,
+            "listenToMusic": false,
+            "noSmoking": false,
+            "talkTooMuch": false
+        }
+    },
+    {
+        "model": "common.preference",
+        "pk": 3,
+        "fields": {
+            "canNotTravelWithPets": false,
+            "listenToMusic": false,
+            "noSmoking": false,
+            "talkTooMuch": false
+        }
+    },
+    {
+        "model": "common.driver",
+        "pk": 1,
+        "fields": {
+            "parent_pointer_id": 1,
+            "dni": "123456789",
+            "driverPoints": 0,
+            "autonomy": 120,
+            "chargerTypes": [
+                1,
+                2
+            ],
+            "preference": 1,
+            "iban": "ES9121000418450200051332"
+        }
+    },
+    {
+        "model": "common.driver",
+        "pk": 2,
+        "fields": {
+            "parent_pointer_id": 2,
+            "dni": "987654321",
+            "driverPoints": 0,
+            "autonomy": 120,
+            "chargerTypes": [
+                5
+            ],
+            "preference": 2,
+            "iban": "ES7921000813610123456789"
+        }
+    },
+    {
+        "model": "common.driver",
+        "pk": 3,
+        "fields": {
+            "parent_pointer_id": 3,
+            "dni": "456123789",
+            "driverPoints": 0,
+            "autonomy": 120,
+            "chargerTypes": [
+                3,
+                4
+            ],
+            "preference": 3,
+            "iban": "ES4821005000512345678901"
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "achievement": 1,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "achievement": 2,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "achievement": 3,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 4,
+        "fields": {
+            "user": 1,
+            "achievement": 4,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 5,
+        "fields": {
+            "user": 1,
+            "achievement": 5,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 6,
+        "fields": {
+            "user": 1,
+            "achievement": 6,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 7,
+        "fields": {
+            "user": 1,
+            "achievement": 7,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 8,
+        "fields": {
+            "user": 1,
+            "achievement": 8,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 9,
+        "fields": {
+            "user": 1,
+            "achievement": 9,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 10,
+        "fields": {
+            "user": 2,
+            "achievement": 1,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 11,
+        "fields": {
+            "user": 2,
+            "achievement": 2,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 12,
+        "fields": {
+            "user": 2,
+            "achievement": 3,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 13,
+        "fields": {
+            "user": 2,
+            "achievement": 4,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 14,
+        "fields": {
+            "user": 2,
+            "achievement": 5,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 15,
+        "fields": {
+            "user": 2,
+            "achievement": 6,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 16,
+        "fields": {
+            "user": 2,
+            "achievement": 7,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 17,
+        "fields": {
+            "user": 2,
+            "achievement": 8,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 18,
+        "fields": {
+            "user": 2,
+            "achievement": 9,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 19,
+        "fields": {
+            "user": 3,
+            "achievement": 1,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 20,
+        "fields": {
+            "user": 3,
+            "achievement": 2,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 21,
+        "fields": {
+            "user": 3,
+            "achievement": 3,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 22,
+        "fields": {
+            "user": 3,
+            "achievement": 4,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 23,
+        "fields": {
+            "user": 3,
+            "achievement": 5,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 24,
+        "fields": {
+            "user": 3,
+            "achievement": 6,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 24,
+        "fields": {
+            "user": 3,
+            "achievement": 7,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 25,
+        "fields": {
+            "user": 3,
+            "achievement": 8,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    },
+    {
+        "model": "common.userachievementprogress",
+        "pk": 26,
+        "fields": {
+            "user": 3,
+            "achievement": 9,
+            "progress": 0,
+            "achieved": false,
+            "date_achieved": null
+        }
+    }
+]

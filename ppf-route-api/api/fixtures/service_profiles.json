@@ -1,0 +1,27 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 10,
+        "fields": {
+            "id": 10,
+            "password": "pbkdf2_sha256$720000$wPTHWizQ7hsPtueHloRaup$4USaxpXs7g/hGR4ZwRDME2m/d2W2nstD0q8IXoRaD2o=",
+            "last_login": null,
+            "is_superuser": 1,
+            "username": "ChatEngine",
+            "last_name": "",
+            "email": "admin@ppf.com",
+            "is_staff": 1,
+            "is_active": 1,
+            "first_name": ""
+        }
+    },
+    {
+        "model": "authtoken.token",
+        "pk": 10,
+        "fields": {
+            "user_id": 10,
+            "key": "4mhq7oac57hcqkm62ocvqf75xmn35i7z5jpgtavb",
+            "created": "2024-04-09 18:51:41.789429"
+        }
+    }
+]
